@@ -172,12 +172,45 @@ body{
 .b5{background:#c6b4ff;left:80%;animation-delay:3s;}
 .b6{background:#ff9aa2;left:90%;animation-delay:5s;}
 
+.music-btn{
+  position:fixed;
+  bottom:25px;
+  right:25px;
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  background:#ff8fb3;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:26px;
+  color:white;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  z-index:999;
+  user-select:none;
+}
+
+.music-btn.playing{
+  animation:spin 3s linear infinite;
+}
+
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
 </style>
 </head>
 
 <body>
 
-<audio src="/img/song.mp3" autoplay loop id="bgMusic"></audio>
+<audio id="bgMusic" src="./img/song.mp3" loop></audio>
+
+<div class="music-btn" id="musicBtn">
+  🎵
+</div>
+
 
 <div class="container">
 
@@ -195,8 +228,8 @@ body{
     <div class="slide"><img src="img/Photo7.jpg"></div>
     <div class="slide"><img src="img/Photo6.jpg"></div>
     
-    <div class="slide"><video src="/img/VID20250502223626.mp4" muted autoplay loop></video></div>
-    <div class="slide prev"><video src="/img/v2.mp4" muted autoplay loop></video></div>
+    <div class="slide"><video src="./img/VID20250502223626.mp4" muted autoplay loop></video></div>
+    <div class="slide prev"><video src="./img/v2.mp4" muted autoplay loop></video></div>
   </div>
 
   <div class="footer-section">
@@ -232,11 +265,21 @@ setInterval(()=>{
   updateSlides();
 },3000);
 
-window.addEventListener("click",()=>{
-  const audio=document.getElementById("bgMusic");
-  audio.muted=false;
-  audio.play();
-},{once:true});
+const music=document.getElementById("bgMusic");
+const btn=document.getElementById("musicBtn");
+let isPlaying=false;
+
+btn.addEventListener("click",()=>{
+  if(!isPlaying){
+    music.play();
+    btn.classList.add("playing");
+    isPlaying=true;
+  }else{
+    music.pause();
+    btn.classList.remove("playing");
+    isPlaying=false;
+  }
+});
 </script>
 
 </body>
