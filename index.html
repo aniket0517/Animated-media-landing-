@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Vivansh</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+
+  background:linear-gradient(
+    120deg,
+    #fff1f5,
+    #eef6ff,
+    #f3fff8,
+    #fff7e6
+  );
+  background-size:300% 300%;
+  animation:softFlow 16s ease-in-out infinite;
+}
+
+@keyframes softFlow{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
+}
+
+
+.container{
+  width:95%;
+  max-width:950px;
+  height:650px;
+  background:rgba(255,255,255,0.65);
+  backdrop-filter:blur(10px);
+  border-radius:30px;
+  border:6px solid white;
+  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  position:relative;
+}
+
+.header-section{
+  text-align:center;
+}
+
+.sub-wish{
+  font-size:18px;
+  color:#7ab8eb;
+  letter-spacing:2px;
+  font-weight:600;
+}
+
+.name{
+  font-family:'Pacifico',cursive;
+  font-size:46px;
+  color:#ff8fb3;
+}
+
+
+.slider{
+  flex:1;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+}
+
+.slide{
+  position:absolute;
+  width:280px;
+  height:380px;
+  border-radius:20px;
+  overflow:hidden;
+  border:8px solid white;
+  box-shadow:0 12px 30px rgba(0,0,0,0.08);
+  opacity:0;
+  transition:all 0.8s ease;
+}
+
+.slide img,
+.slide video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.slide.active{
+  opacity:1;
+  z-index:5;
+  transform:scale(1.05);
+}
+
+.slide.prev{
+  opacity:0.4;
+  z-index:2;
+  transform:translateX(-180px) scale(0.85);
+}
+
+.slide.next{
+  opacity:0.4;
+  z-index:2;
+  transform:translateX(180px) scale(0.85);
+}
+
+.footer-section{
+  margin-top:10px;
+  background:white;
+  padding:10px 30px;
+  border-radius:40px;
+  box-shadow:0 5px 12px rgba(0,0,0,0.05);
+}
+
+.footer-section h1{
+  font-size:16px;
+  color:#9cdba6;
+}
+
+.floating-elements{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.balloon{
+  position:absolute;
+  bottom:-150px;
+  width:58px;
+  height:75px;
+  border-radius:50%;
+  animation:floatUp 12s linear infinite;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:12px;
+  font-weight:700;
+
+  opacity:0.7;             
+  filter:none;             
+  box-shadow:0 6px 14px rgba(0,0,0,0.15); 
+}
+
+
+@keyframes floatUp{
+  0%{transform:translateY(0);opacity:0;}
+  15%{opacity:0.35;}
+  100%{transform:translateY(-800px);opacity:0;}
+}
+
+.b1{background:#ff9ec4;left:12%;animation-delay:0s;}
+.b2{background:#8ecbff;left:28%;animation-delay:2s;}
+.b3{background:#8ee6b8;left:46%;animation-delay:4s;}
+.b4{background:#ffe28a;left:64%;animation-delay:1s;}
+.b5{background:#c6b4ff;left:80%;animation-delay:3s;}
+.b6{background:#ff9aa2;left:90%;animation-delay:5s;}
+
+</style>
+</head>
+
+<body>
+
+<audio src="/img/song.mp3" autoplay loop id="bgMusic"></audio>
+
+<div class="container">
+
+  <div class="header-section">
+    <div class="sub-wish">Happy Birthday</div>
+    <div class="name">Vivansh</div>
+  </div>
+
+  <div class="slider">
+    <div class="slide active"><img src="img/Photo1.PNG"></div>
+    <div class="slide next"><img src="img/Photo2.PNG"></div>
+    <div class="slide"><img src="img/Photo3.PNG"></div>
+    <div class="slide"><img src="img/Photo4.PNG"></div>
+    <div class="slide"><img src="img/Photo5.jpg"></div>
+    <div class="slide"><img src="img/Photo7.jpg"></div>
+    <div class="slide"><img src="img/Photo6.jpg"></div>
+    
+    <div class="slide"><video src="/img/VID20250502223626.mp4" muted autoplay loop></video></div>
+    <div class="slide prev"><video src="/img/v2.mp4" muted autoplay loop></video></div>
+  </div>
+
+  <div class="footer-section">
+    <h1>Lots of love, Ankit Mama</h1>
+  </div>
+
+  <div class="floating-elements">
+    <div class="balloon b1">HAPPY</div>
+    <div class="balloon b2">BIRTH</div>
+    <div class="balloon b3">DAY</div>
+    <div class="balloon b4">TO</div>
+    <div class="balloon b5">YOU</div>
+    <div class="balloon b6">❤</div>
+  </div>
+
+</div>
+
+<script>
+const slides=document.querySelectorAll(".slide");
+let current=0;
+
+function updateSlides(){
+  slides.forEach((slide,i)=>{
+    slide.classList.remove("active","prev","next");
+    if(i===current) slide.classList.add("active");
+    else if(i===(current-1+slides.length)%slides.length) slide.classList.add("prev");
+    else if(i===(current+1)%slides.length) slide.classList.add("next");
+  });
+}
+
+setInterval(()=>{
+  current=(current+1)%slides.length;
+  updateSlides();
+},3000);
+
+window.addEventListener("click",()=>{
+  const audio=document.getElementById("bgMusic");
+  audio.muted=false;
+  audio.play();
+},{once:true});
+</script>
+
+</body>
+</html>
